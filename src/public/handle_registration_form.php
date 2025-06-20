@@ -2,8 +2,8 @@
 
 $errors = [];
 
-if(isset($_GET['name'])){
-    $name = $_GET['name'];
+if(isset($_POST['name'])){
+    $name = $_POST['name'];
 
     if (strlen($name) < 2) {
         $errors['name'] = 'Имя должно быть больше 2х символов' . "<pre>";
@@ -13,8 +13,8 @@ if(isset($_GET['name'])){
     $errors['name'] = 'Имя должно быть заполнено' . "<pre>";
 }
 
-if(isset($_GET['email'])){
-    $email = $_GET['email'];
+if(isset($_POST['email'])){
+    $email = $_POST['email'];
     if (strlen($email) < 5) {
         $errors['email'] = 'Недопустимая длина электронной почты' . "<pre>";
     } elseif (filter_var($email, FILTER_VALIDATE_EMAIL) === false){
@@ -25,8 +25,8 @@ if(isset($_GET['email'])){
 }
 
 
-if(isset($_GET['psw'])){
-    $password = $_GET['psw'];
+if(isset($_POST['psw'])){
+    $password = $_POST['psw'];
     if (strlen($password) < 3) {
         $errors['psw'] = 'Недопустимая длина пароля' . "<pre>";
     }
@@ -34,8 +34,8 @@ if(isset($_GET['psw'])){
     $errors['psw'] = 'Пароль должен быть заполнен' . "<pre>";
 }
 
-if(isset($_GET['psw-repeat'])){
-    $passwordRepeat = $_GET['psw-repeat'];
+if(isset($_POST['psw-repeat'])){
+    $passwordRepeat = $_POST['psw-repeat'];
     if ($password !== $passwordRepeat) {
         $errors['psw-repeat'] = 'Введенные пароли не совпадают' . "<pre>";
     }
@@ -45,9 +45,9 @@ if(isset($_GET['psw-repeat'])){
 
 
     if (empty($errors)) {
-        $name = $_GET['name'];
-        $email = $_GET['email'];
-        $password = $_GET['psw'];
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['psw'];
 
         $pdo = new PDO('pgsql:host=db;port=5432;dbname=mydb', 'user', 'pass');
 
