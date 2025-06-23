@@ -1,21 +1,20 @@
 <?php
 
-$errors = [];
+function isValidData(array $data): array
+{
+    $errors = [];
 
-
-    if (isset($_POST['name'])) {
-        $name = $_POST['name'];
-
+    if (isset($data['name'])){
+        $name = $data['name'];
         if (strlen($name) < 2) {
             $errors['name'] = 'Имя должно быть больше 2х символов' . "<pre>";
         }
-
     } else {
         $errors['name'] = 'Имя должно быть заполнено' . "<pre>";
     }
 
-    if (isset($_POST['email'])) {
-        $email = $_POST['email'];
+    if (isset($data['email'])) {
+        $email = $data['email'];
         if (strlen($email) < 5) {
             $errors['email'] = 'Недопустимая длина электронной почты' . "<pre>";
         } elseif (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
@@ -26,8 +25,8 @@ $errors = [];
     }
 
 
-    if (isset($_POST['psw'])) {
-        $password = $_POST['psw'];
+    if (isset($data['psw'])) {
+        $password = $data['psw'];
         if (strlen($password) < 3) {
             $errors['psw'] = 'Недопустимая длина пароля' . "<pre>";
         }
@@ -35,24 +34,31 @@ $errors = [];
         $errors['psw'] = 'Пароль должен быть заполнен' . "<pre>";
     }
 
-    if (isset($_POST['psw-repeat'])) {
-        $password = $_POST['psw'];
-        $passwordRepeat = $_POST['psw-repeat'];
+    if (isset($data['psw-repeat'])) {
+        $passwordRepeat = $data['psw-repeat'];
+        $password = $data['psw'];
         if ($password !== $passwordRepeat) {
             $errors['psw-repeat'] = 'Введенные пароли не совпадают' . "<pre>";
         }
     } else {
         $errors['psw-repeat'] = 'Повторный пароль должен быть заполнен' . "<pre>";
     }
+    return $errors;
+}
 
 
+
+
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $errors = isValidData($_POST);
     if (empty($errors)) {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['psw'];
+        $passwordRepeat = $_POST['psw-repeat'];
 
         $pdo = new PDO('pgsql:host=db;port=5432;dbname=mydb', 'user', 'pass');
-
         $password = password_hash($password, PASSWORD_DEFAULT); // хэшифрование пароля - шифрование
 
         //метод prepare(подготовить) используется при вставке данных в наш запрос
@@ -64,12 +70,13 @@ $errors = [];
         $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
         $statement->execute(['email' => $email]);
 
-        $data = $statement->fetch();
-        print_r($data);
-
+        $data1 = $statement->fetch();
+        print_r($data1);
+    } else {
+        print_r($errors);
     }
-
-    require_once './registration_form.php';
+}
+require_once './registration_form.php';
 
 
 
