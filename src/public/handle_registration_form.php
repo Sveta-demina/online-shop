@@ -50,7 +50,7 @@ function isValidData(array $data): array
 
 
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
     $errors = isValidData($_POST);
     if (empty($errors)) {
         $name = $_POST['name'];
@@ -75,7 +75,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     } else {
         print_r($errors);
     }
-}
+
 require_once './registration_form.php';
 
 
