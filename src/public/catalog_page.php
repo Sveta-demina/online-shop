@@ -1,11 +1,12 @@
 <div class="container">
-    <h3>Catalog</h3>
+    <a href="/profile.php">МОЙ ПРОФИЛЬ</a>
+    <h3>КАТАЛОГ ТОВАРОВ</h3>
     <div class="card-deck">
         <?php foreach ($products as $product): ?>
             <div class="card text-center">
                 <a href="#">
                     <div class="card-header">
-                        Hit!
+                        НОВИНКА!
                     </div>
                     <img class="card-img-top" src="<?php echo $product['image_url'];?>" alt="Card image">
                     <div class="card-body">

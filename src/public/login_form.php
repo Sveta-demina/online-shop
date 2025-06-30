@@ -1,6 +1,6 @@
 <div class="wrapper">
     <form class="form-signin" action="handle_login.php" method="POST">
-        <h2 class="form-signin-heading">Please login</h2>
+        <h2 class="form-signin-heading">Введите логин и пароль</h2>
         <?php if (isset($errors['username'])): ?>
             <label style="color: red"> <?php echo $errors['username'];?> </label>
         <?php endif; ?>
