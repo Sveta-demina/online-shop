@@ -38,7 +38,7 @@ if (empty($errors)) {
             //успешный вход через сессии
             session_start();
             $_SESSION['user_id'] = $user['id'];
-            header("Location: /catalog.php");
+            header("Location: /catalog");
 
 
             //отдаем страницу каталога с помощью редиректа-перенаправления статус код 302

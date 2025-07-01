@@ -1,7 +1,7 @@
 <body>
 <div class="container">
     <h1>Редактирование профиля</h1>
-    <form action="edit_profile.php" method="POST">
+    <form action="/edit" method="POST">
         <label for="name">Имя:</label>
         <input type="text" id="name" name="name"><br><br>
 
@@ -13,7 +13,7 @@
 
         <button type="submit">Сохранить изменения</button>
     </form>
-    <a href="profile.php">Назад к профилю</a>
+    <a href="/profile">Назад к профилю</a>
 </div>
 </body>
 

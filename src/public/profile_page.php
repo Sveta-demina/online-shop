@@ -10,7 +10,7 @@
         <p><strong>Имя:</strong> <?php echo $profile['name'];?></p>
         <p><strong>Email:</strong><?php echo $profile['email'];?></p>
         <p><strong>Пароль:</strong><?php echo $profile['password'];?></p>
-        <a href="/edit_profile.php">Редактировать</a>
+        <a href="/edit">Редактировать</a>
     </div>
 </div>
 </body>

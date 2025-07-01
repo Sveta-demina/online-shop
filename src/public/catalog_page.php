@@ -1,5 +1,5 @@
 <div class="container">
-    <a href="/profile.php">МОЙ ПРОФИЛЬ</a>
+    <a href="/profile">МОЙ ПРОФИЛЬ</a>
     <h3>КАТАЛОГ ТОВАРОВ</h3>
     <div class="card-deck">
         <?php foreach ($products as $product): ?>
@@ -24,7 +24,7 @@
 
         <style>
             body {
-                font-style: sans-serif;
+                font-style: normal;
             }
 
             a {
