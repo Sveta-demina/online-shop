@@ -17,6 +17,7 @@ services:
     restart: always
     volumes:
       - /users/svetlana/projects/test/online-shop:/var/www/html
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-xdebug.ini
 
   db:
     image: postgres:13
